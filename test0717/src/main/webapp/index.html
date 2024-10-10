@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Include Bootstrap CSS -->
+    <title>PASTA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="css/style_layout.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="page-grid">
+      <div class="up d-flex align-items-end">
+        <div class="container-fluid">
+          <header class="d-flex flex-wrap align-items-center justify-content-md-between py-2 mb-2 border-bottom row">
+            <div class="col-md-3 mb-2 mb-md-0 d-flex">
+              <a href="./index.html" class="d-flex link-body-emphasis text-decoration-none">
+                <!-- <i class="bi bi-house-door text-light-emphasis display-3" style="font-size: 2rem;"></i> -->
+                <!-- <img class="img-house-door text-light-emphasis rounded" src="\轉bootstrap\修改三行框架\image\house-door.svg" alt="Pasta"></img> -->
+                <font class="text-light-emphasis display-3" style="vertical-align: inherit; font-weight: 700">Pasta</font>
+              </a>
+            </div>
+            <!--<nav>區塊用於包含連結的無序清單,顯示為 sidebar、導覽列、以及下拉式選單-->
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 align-self-end">
+              <li>
+                <a href="./order.jsp" class="nav-link px-4 link-dark"><font style="vertical-align: inherit; font-weight: 500">Pasta點餐</font></a>
+              </li>
+              <li>
+                <a href="#" class="nav-link px-4 link-dark"><font style="vertical-align: inherit; font-weight: 500" onclick="switchToMap()">地圖</font></a>
+              </li>
+            </ul>
+            <!--右邊登入-->
+            <div class="col-md-3 text-end">
+              <!-- <button type="button" class="btn btn-outline-primary px-4 me-0"><font style="vertical-align: inherit">登入</font></button> -->
+            </div>
+          </header>
+        </div>
+      </div>
+
+      <div class="box-grid d-flex align-items-center">
+        <div class="container-fluid">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="middle-menu col-12 col-sm-6">
+              <img class="menu img-fluid object-fit-contain" src="image/menu.jpg" alt="Menu" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="down d-flex align-items-center">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-center row">
+            <div class="col-sm-12 col-md-8 col-lg-4 text-md-start text-lg-start contact">
+              <p class="fs-6">電話：0912-345-678</p>
+              <p class="fs-6">地址：OO縣OO鄉OO街OO號</p>
+              <p class="fs-6">營業時間：</p>
+              <p class="fs-6">11:30-14:00(13:30後僅提供外帶) 17:00-20:00(供餐至19:30)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXlD+P0bbQd+DApM4jmbfG0fGZY9m1XkBtwlr99JT14NPyQwX0Y9JWq4sz0e"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+      crossorigin="anonymous"
+    ></script>
+    <!--店家地圖-->
+    <script src="js/mapUrl.js"></script>
+    <script>
+      function switchToMap() {
+        var img = document.querySelector(".menu");
+        img.outerHTML = `
+        <div class="menu" style="width: 100%; height: 100%;">
+           <iframe src= ${jsonMap.mapUrl}
+           	width=${jsonMap.width} 
+           	height=${jsonMap.height} 
+           	style=${jsonMap.styleBorder} 
+           	allowfullscreen="" 
+           	loading=${jsonMap.lazy}
+           	referrerpolicy=${jsonMap.no_referrer}>
+           	</iframe>
+          </div>`;
+        img.alt = "Map";
+      }
+    </script>
+  </body>
+</html>
