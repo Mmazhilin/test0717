@@ -193,6 +193,7 @@
           return false; // 阻止表單提交
         }
         // 如果需要進一步的檢查或處理可以在這裡添加
+        alert("確認送出訂單");
         return true; // 允許表單提交
       }
     </script>

@@ -1,8 +1,7 @@
 var xmlHTTP;
-var str;
 var menuElement;
 var menu_option;
-set_menu();
+set_menu();//顯示全部菜單
 document.querySelector('.menu-options').addEventListener('click', function(event) {
 	//var select_op = document.getElementById("select_op").value;
 
@@ -36,7 +35,7 @@ document.querySelector('.menu-options').addEventListener('click', function(event
 	}
 });
 
-
+//顯示各項目菜單
 function set_menu() {
 	if (window.ActiveXObject) {
 		xmlHTTP = new ActiveXObject("Microsoft.XMLHTTP");
@@ -48,8 +47,8 @@ function set_menu() {
 	xmlHTTP.open("GET", "/test0717/doOrderServlet?menu_option=" + menu_option, true);
 
 	xmlHTTP.onreadystatechange = function check_status() {
-		if (xmlHTTP.status == 200) {
-			if (xmlHTTP.readyState == 4) {
+		if (xmlHTTP.readyState == 4) {
+			if (xmlHTTP.status == 200) {
 				var response = JSON.parse(xmlHTTP.responseText);
 				// 在插入新內容之前先清除menu
 				menuElement = document.querySelector(".menu");
@@ -58,52 +57,51 @@ function set_menu() {
 					// 獲取第一個物件的相關資訊
 					for (var i = 0; i < response.length; i++) {
 						var firstItem = response[i];
-						var pname = firstItem.pname;
-						var price = firstItem.price;
-						var noodleOptions = firstItem.image;
-						// 構建HTML字串
-						var messageHTML = "<li class='menu-item'>";
-						messageHTML += "<img src='./image/" + pname + ".png' alt='" + pname + "' />";
-						messageHTML += "<h2 class='menu-item-title'>" + pname + "</h2>";
-						messageHTML += "<p class='price'>價格：" + price + "</p>";
-						messageHTML += "<div class='circle-button'>"
-						messageHTML += "<p>";
-						messageHTML += "<input type='radio' name='noodle" + i + "'value='thin" + i + "'id='thin" + i + "' />";
-						messageHTML += "<label for='thin" + i + "'>細麵</label>";
-						messageHTML += "<input type='radio' name='noodle" + i + "'value='macaroni" + i + "' id='macaroni" + i + "' />";
-						messageHTML += "<label for='macaroni" + i + "'>筆管麵</label>";
-						messageHTML += "<input type='radio' name='noodle" + i + "'value='rice" + i + "' id='rice" + i + "' />";
-						messageHTML += "<label for='rice" + i + "'>飯</label>";
-						messageHTML += "<input type='checkbox' name='topping' value='checkbox" + i + "' id='checkbox" + i + "' />";
-						messageHTML += "<label for='topping" + i + "'>焗烤</label>";
-						messageHTML += "</p></div>";
-						messageHTML += "<div class='button-container'>";
-						messageHTML += "<button class='add-to-cart' id='add-cart" + i + "' onclick='add_shopping(this)'>加入購物車</button>";
-						messageHTML += "</div>";
+						const pname = escapeHTML(firstItem.pname);//餐點名稱
+						const price = escapeHTML(firstItem.price);//餐點價錢
+						const noodleOptions = firstItem.image;//餐點圖片
 
-						// 將HTML內容插入到網頁中的特定元素中
-						//document.querySelector(".page-grid").style.color = responseData3.color;
-						document.querySelector(".menu").innerHTML += messageHTML;
-						
+						var listItem = document.createElement("li");
+						listItem.className = "menu-item";
+
+						// 構建HTML字串
+						listItem.innerHTML = `
+                    		<img src='./image/${pname}.png' alt='${pname}' />
+                   			<h2 class='menu-item-title'>${pname}</h2>
+                    		<p class='price'>價格：${price}</p>
+                    		<div class='circle-button'>
+                        		<p>
+		                           <input type='radio' name='noodle${i}' value='thin${i}' id='thin${i}' />
+		                           <label for='thin${i}'>細麵</label>
+		                           <input type='radio' name='noodle${i}' value='macaroni${i}' id='macaroni${i}' />
+		                           <label for='macaroni${i}'>筆管麵</label>
+		                           <input type='radio' name='noodle${i}' value='rice${i}' id='rice${i}' />
+		                           <label for='rice${i}'>飯</label>
+		                           <input type='checkbox' name='topping' value='checkbox${i}' id='checkbox${i}' />
+		                           <label for='checkbox${i}'>焗烤</label>
+                        		</p>
+                    		</div>
+		                    <div class='button-container'>
+		                        <button class='add-to-cart' id='add-cart${i}' onclick='add_shopping(this)'>加入購物車</button>
+		                    </div>
+                		`;
+						//將列表項添加到菜單中
+						menuElement.appendChild(listItem);
 					}
-					alert('提交訂單時出錯:' + xhr.status + xhr.responseText);
-					//set_renew_css();
 				}
+			} else {
+				alert('提交訂單時出錯:' + xmlHTTP.status + xmlHTTP.responseText);
 			}
 		}
 	}
 	xmlHTTP.send();
-
 }
 
-var responseData = {
-	"height": "auto",
-	"color": "blue"
-};
-
-
-function set_renew_css() {
-	document.querySelector(".page-grid").style.height = responseData.height;
+//使用轉義函數避免格是被竄改
+function escapeHTML(str) {
+	const div = document.createElement('div');
+	div.appendChild(document.createTextNode(str));
+	return div.innerHTML;
 }
 
 

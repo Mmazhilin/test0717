@@ -1,6 +1,6 @@
 
 		function add_shopping(button){
-			alert("加入購物車");
+			
 			// 找到包含該按鈕的父級 .menu-item 元素
 		    var menuItem = button.closest('.menu-item');
 		    // 獲取商品詳細信息
@@ -13,7 +13,9 @@
 		    if (!selectedOption) {
 		    	alert("請選擇麵或飯選項");
 		        return; // 如果沒有選擇麵或飯選項，直接返回，不執行後面的代碼		    	
-		    }
+		    } else {
+				alert("加入購物車");
+			}
 		    noodleType = selectedOption.nextElementSibling.textContent;
 		    
 		    // 獲取焗烤選項		    

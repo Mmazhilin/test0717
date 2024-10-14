@@ -19,7 +19,11 @@
         grid-template-rows: 50px 1fr 450px;
         grid-template-areas: "sidebar" "menu" "order";
       }
-
+      
+      .page-grid {
+        height: auto; 
+      }
+      
       .menu-options {
         padding: 4px 0;
         grid-auto-flow: column;

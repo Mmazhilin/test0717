@@ -25,15 +25,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	/*21>=? ?>=9*/
 	/*還沒到營業時間*/
 	
-//	if ((startHour > currentHour && 0 < startHour) || (21 < currentHour &&  currentHour <= 24)) {
-//		hourPicker.value = "9";
-//		hourPicker.disabled = true;
-//		minutePicker.disabled = true;
-//	} else {
-//		/*營業時間*/
-//		hourPicker.disabled = false;
-//		minutePicker.disabled = false;
-//	}
+	if ((startHour > currentHour && 0 < startHour) || (21 < currentHour &&  currentHour <= 24)) {
+		hourPicker.value = currentHour.toString();
+		hourPicker.disabled = true;
+		minutePicker.disabled = true;
+	} else {
+		//營業時間
+		hourPicker.disabled = false;
+		minutePicker.disabled = false;
+	}
 
 	// 初始化時根據當前分鐘數顯示適當的選項
 	if (currentMinute >= 0) {
