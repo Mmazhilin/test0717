@@ -1,0 +1,90 @@
+/*餐點中的<ul>*/
+.menu {
+  display: grid;
+  /* grid-template-columns: 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  height: auto;
+}
+.menu-bg-content2{
+	height: 100%;
+	background-color: aliceblue;
+}
+/*餐點中的<li>*/
+.menu-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  margin: 10px;
+  list-style: none;
+}
+/*餐點圖片*/
+.menu-item img {
+  width: 100%;
+  height: auto;
+}
+/*餐點標題*/
+.menu-item h2 {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 1.2rem;
+}
+/*餐點價格*/
+.price {
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+/*點餐畫面*/
+h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+/*點餐畫面*/
+.menu-title {
+  text-align: left;
+  padding:0px 0px 0px 10px;
+  background-color: antiquewhite;
+}
+
+/* 加購減購*/
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+.button-container #const {
+  display: inline-block;
+  width: 10%;
+  padding: 10px;
+}
+.add-to-cart {
+  display: inline-block;
+  width: 45%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #45a049;
+}
+
+.circle-button p {
+  text-align: left;
+  font-size: 1em;
+}
+
+/* 點餐畫面背景顏色 */
+.menu-content2 {
+  
+}
