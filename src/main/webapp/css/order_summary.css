@@ -1,0 +1,49 @@
+.order-summary {
+  height: 100%;
+  padding: 10px 5px 10px 5px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.order-summary-item {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ /* padding: 10px;*/
+  background-color: #fff;
+  /* margin: 10px; */
+  text-align: left;
+  overflow-y: scroll;
+}
+
+h2,
+h3 {
+  margin: 0px;
+  padding: 10px;
+}
+
+.order-summary ul {
+  padding: 10px; 
+  /*list-style-type: none; /*取消黑點*/
+}
+.btn-amount {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .order-summary {
+    padding: 10px;
+  }
+  .order-summary-item {
+    width: 300px; /*可設可不設*/
+  }
+}

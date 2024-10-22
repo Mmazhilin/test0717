@@ -1,0 +1,340 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.order-summary {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: rgb(242, 211, 175);
+}
+
+.order-item {
+	margin-bottom: 10px;
+}
+
+.total-price {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.confirm-btn {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+	background-color: #45a049;
+}
+
+.input-group {
+	margin-bottom: 10px;
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+/* 訂單內容最上層整體欄位樣式*/
+.grid-container1 {
+  display: grid;
+  grid-template-areas: " product item  add quantity price";
+  margin-bottom: 28px;
+  background-color: rgb(249, 231, 209);
+  gap: 30px;
+}
+.grid-container1 > div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 17;
+  background-color: rgb(249, 231, 209);
+}
+
+/* 訂單最上層各欄位樣式 如：餐點名稱、主食、加點、數量、價格 */
+.product-th {
+  grid-area: product;
+  width: 140px;
+  margin-left: 6px;
+  text-align: left;
+}
+.item-th {
+  grid-area: item;
+  width: 52px;
+  text-align: center;
+}
+.add-th {
+  grid-area: add;
+  width: 45px;
+  text-align: center;
+}
+.quantity-th {
+  grid-area: quantity;
+  width: 45px;
+  margin-top: 2px;
+  text-align: center;
+  font-size: 17px;
+}
+.price-th {
+  grid-area: price;
+  width: 55px;
+  margin-top: 2px;
+  margin-right: 6px;
+  /*將文字位置移至最右 */
+  margin-left: auto;
+  text-align: right;
+  font-size: 17px;
+}
+
+/* 訂單內容整體欄位樣式 */
+.grid-container {
+  display: grid;
+  grid-template-areas: " product item  add quantity price";
+  max-width: 800px;
+  gap: 30px;
+  background-color: rgb(242, 211, 175);
+}
+.grid-container > div {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: rgb(242, 211, 175);
+}
+
+/* 訂單內容各欄位樣式 */
+.product-td {
+  /* 餐點名稱 */
+  grid-area: product;
+  width: 140px;
+  margin-left: 6px;
+}
+.item-td {
+  /* 主食 */
+  grid-area: item;
+  width: 52px;
+  text-align: center;
+}
+.add-td {
+  /* 加點 */
+  grid-area: add;
+  width: 45px;
+  text-align: center;
+}
+.quantity-td {
+  /* 數量 */
+  grid-area: quantity;
+  width: 45px;
+  margin-top: 2px;
+  text-align: center;
+  font-size: 17px;
+}
+.price-td {
+  /* 價格 */
+  grid-area: price;
+  width: 55px;
+  margin-top: 2px;
+  margin-right: 6px;
+  margin-left: auto; /* 將文字位置移至最右 */
+  text-align: right;
+  font-size: 17px;
+}
+hr {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.amount {
+  display: block;
+  text-align: right;
+  margin-right: 6px;
+  font-size: 21px;
+  font-weight: 700;
+}
+#orderType {
+  /*設定取餐方式欄位樣式 */
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+#hour-picker,
+#minute-picker {
+  /* 設定取餐時間的欄位樣式 */
+  width: 85px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#addressField {
+  display: none; /* 預設隱藏地址輸入欄 */
+}
+
+
+/* 當輸入不合規則時，改變邊框顏色 */
+/*     input[type=text]:invalid { */
+/*         border-color: #ff0000; 紅色邊框 */
+/*     } */
+
+	input[type="text"]:valid,
+	input[type="tel"]:valid {
+        outline: none;
+    }
+    input[type="text"]:focus:valid,
+    input[type="tel"]:focus:valid {
+       
+         border: 2px solid green;
+    }
+	input[type="text"]:focus:valid,
+	input[type="tel"]:focus:valid {
+		   outline: none;
+    }
+    
+    input[type="text"]:focus:invalid,
+    input[type="tel"]:focus:invalid {
+        border: 2px solid red;
+        outline: none;
+    }
+/* ------------------響應式網頁，寬度576px以下--------------------- */
+
+@media screen and (max-width: 576px) {
+  /* 訂單邊緣padding寬度*/
+  .order-summary {
+    padding: 18px;
+  }
+
+  /* 訂單內容最上層整體欄位樣式 */
+  .grid-container1 {
+    display: grid;
+    grid-template-areas: " product quantity quantity  price";
+
+    margin-bottom: 25px;
+    gap: 5px;
+    background-color: rgb(249, 231, 209);
+  }
+
+  .grid-container1 > div {
+    background-color: rgb(249, 231, 209);
+  }
+
+  /* 訂單內容最上層整體各欄位樣式，只顯示餐點名稱、數量、價格 */
+  .product-th {
+    width: 120px;
+    grid-area: product;
+    margin-left: 10px;
+    /* text-align: ; */
+  }
+  .item-th {
+    display: none;
+  }
+  .add-th {
+    display: none;
+  }
+  .quantity-th {
+    grid-area: quantity;
+    width: 45px;
+    font-size: 15px;
+    margin-top: 2px;
+    text-align: center;
+    margin-left: 32%;
+  }
+  .price-th {
+    grid-area: price;
+    width: 52px;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  /* 訂單內容整體欄位樣式 */
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      " product   product      product     product"
+      " item 	  quantity      price      price"
+      " add       quantity      price      price";
+    background-color: rgb(242, 211, 175);
+    gap: 2px;
+    padding: 1px;
+    margin-bottom: 20px;
+  }
+  .grid-container > div {
+    margin-top: 2px;
+
+    margin-bottom: 0px;
+    background-color: rgb(242, 211, 175);
+  }
+
+  /* 訂單內容各欄位樣式 */
+  .product-td {
+    /* 餐點名稱   pro*/
+    grid-area: product;
+    width: 120px;
+
+    margin-left: 5px;
+    text-align: left;
+    font-size: 16px;
+  }
+  .item-td {
+    /* 主食 */
+    grid-area: item;
+    width: 120px;
+    margin-bottom: 3px;
+    margin-left: 6px;
+    text-align: left;
+    font-size: 15px;
+    color: rgb(74, 72, 72);
+  }
+  .add-td {
+    /* 加點 */
+    grid-area: add;
+    width: 120px;
+    margin-left: 6px;
+    text-align: left;
+    font-size: 15px;
+    color: rgb(74, 72, 72);
+  }
+  .quantity-td {
+    /* 數量 */
+    grid-area: quantity;
+    width: 45px;
+    margin-top: 2px;
+    margin-left: 45%;
+    text-align: center;
+    font-size: 15px;
+  }
+  .price-td {
+    /* 價格 */
+    grid-area: price;
+    font-size: 15px;
+    text-align: right;
+  }
+}
